@@ -1,0 +1,62 @@
+<ConnectionLabel@Label>:
+    font_size: 26
+    size: root.width, 25
+
+<MultiplayerScreen>:
+    name: 'multiplayer'
+    error_message: error
+    address_field: ip
+    port_field: port
+
+    AsyncImage:
+        source: 'icons/screen.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    AnchorLayout:
+        anchor_y: 'top'
+
+        FloatLayout:
+            Label:
+                font_size: 26
+                size_hint: None, None
+                size: root.width, 30
+                text: 'IP'
+                center: root.width, root.height
+            PlayerInput:
+                id: ip
+                text: '127.0.0.1'
+                font_name: 'Arial'
+                font_size: 24
+                center: root.width, root.height
+            Label:
+                text: 'Server port'
+                center: root.width, root.height
+                font_size: 26
+                size: root.width, 15
+            PlayerInput:
+                id: port
+                text: '----'
+                font_name: 'Arial'
+                font_size: 24
+                size: root.width
+                center: root.width, root.height
+            Label:
+                id: error
+                text: ''
+                center: root.width, root.height
+                font_size: 26
+                color: 1, 0, 0, 1
+                size: root.width, 15
+
+        FloatLayout:
+            StyledButton:
+                text: 'Return'
+                font_name: 'Arial'
+                pos_hint: {'x': 1, 'y': 0}
+                on_release: app.screen_manager.current = 'main'
+            ConnectButton:
+                text: 'Connect'
+                font_name: 'Arial'
+                pos_hint: {'x': 0.5, 'y': 0}

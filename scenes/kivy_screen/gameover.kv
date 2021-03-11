@@ -1,0 +1,30 @@
+<GameOverScreen>:
+    text_field: field
+    moves_field: moves
+
+    AsyncImage:
+        source: 'icons/end_screen.png'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    FloatLayout:
+        Label:
+            id: field
+            color: 0, 0, 0, 1
+            font_size: 26
+            size_hint: None, None
+            center: root.width, root.height
+        Label:
+            id: moves
+            color: 0, 0, 0, 1
+            font_size: 26
+            size_hint: None, None
+            center: root.width, root.height
+        Image:
+            source: 'icons/medal.png'
+        EndButton:
+            text: 'Menu'
+            font_name: 'Arial'
+            size_hint: 0.5, 1
+            pos_hint: {'x': 0.2, 'y': 0}

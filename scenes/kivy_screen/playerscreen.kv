@@ -1,0 +1,43 @@
+<Cell>:
+    background_normal: 'icons/square.png'
+    background_disabled_normal: self.background_normal
+
+<PlayerScreen>:
+    ship_grid: grid
+    ship_counter: counter
+    turn_indicator: turn
+
+    AsyncImage:
+        source:'icons/title_screen.png'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        size_hint: 1, 0.8
+
+        FloatLayout:
+            Label:
+                id: turn
+                text: ''
+                font_size: 26
+                color: 0, 0, 0, 1
+                pos: 0, root.height
+
+            Label:
+                id: counter
+                text: 'There are ships!'
+                font_size: 26
+                color: 0, 0, 0, 1
+                size_hint: 1, 0.5
+                pos: 0, root.height
+
+
+        GridBoard:
+            id: grid
+            size: min(root.height, root.width), min(root.height, root.width)
+            rows: 8
+            cols: 8
+            spacing: 2

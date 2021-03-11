@@ -1,0 +1,17 @@
+<ConnectionScreen>:
+    name: 'connection'
+
+    AsyncImage:
+        source: 'icons/screen.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    FloatLayout:
+        Label:
+            center: root.width, root.height
+            color: 0, 0, 0, 1
+            text: 'Connecting...'
+            font_size: 26
+            size_hint: None, None
+            size: root.width
