@@ -7,7 +7,7 @@ from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
 from app.game import Ship, ShipSegments, make_random_ships
 
-Builder.load_file('app/screen/kv/shipselectionscreen.kv')
+Builder.load_file('app/screen/kv/selectionscreen.kv')
 
 
 class Buttons(Button):
@@ -68,7 +68,7 @@ class ShipGrid(GridLayout):
                 if button.ship_size == 4:
                     size_button = button
                 else:
-                    self.size_button.background_color = (0.9, 0.9, 0.9, 1)
+                    self.size_button.background_color = (.95, .95, .95, 1)
         self.ships = []
         self.start_game = 0
         self.size_button = size_button
@@ -166,7 +166,7 @@ class ShipGrid(GridLayout):
         for button in App.get_running_app().screen_manager.get_screen('ship_selection').top_pane.children:
             if hasattr(button, 'ship_size') and ship.size == button.ship_size:
                 if self.size_button:
-                    self.size_button.background_color = (0.9, 0.9, 0.9, 1)
+                    self.size_button.background_color = (.95, .95, .95, 1)
                 self.size_button = button
                 break
         if self.size_button.how_many:
@@ -187,7 +187,7 @@ class ShipGrid(GridLayout):
         for button in App.get_running_app().screen_manager.get_screen('ship_selection').top_pane.children:
             if hasattr(button, 'ship_size') and ship.size == button.ship_size:
                 if self.size_button:
-                    self.size_button.background_color = (0.9, 0.9, 0.9, 1)
+                    self.size_button.background_color = (.95, .95, .95, 1)
                 button.how_many += 1
                 self.size_button = button
                 break
@@ -277,7 +277,7 @@ class ShipSizeButton(Buttons):
     def toggle_disable(self):
         self.disabled = True
         self.how_many = 0
-        self.background_color = (0.9, 0.9, 0.9, 1)
+        self.background_color = (.95, .95, .95, 1)
 
     def toggle_enable(self, how_many=1):
         self.how_many = how_many
@@ -288,15 +288,12 @@ class ShipSizeButton(Buttons):
         screen = App.get_running_app().screen_manager.current_screen
 
         if screen.ship_grid.size_button:
-            screen.ship_grid.size_button.background_color = (0.9, 0.9, 0.9, 1)
+            screen.ship_grid.size_button.background_color = (.95, .95, .95, 1)
         self.background_color = (0, 229.0/250.0, 0, 1)
         screen.ship_grid.size_button = self
 
 
 class RandomGridButton(Buttons):
-    """
-    Class assigned to the randomize ships button in the kivy file
-    """
 
     def on_release(self):
         ships = None

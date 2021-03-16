@@ -25,34 +25,19 @@
         keep_ratio: False
         keep_data: True
 
-    BoxLayout:
-        orientation: 'horizontal'
-        Button:
-            text: 'Abort!'
-            size_hint: 0.4, None
-            size: 0, 60
-            on_press:
-                app.screen_manager.current = 'main'
-
-        StartButton:
-            id: start
-            text: 'Sail!'
-            size_hint: 0.4, None
-            size: 0, 60
-            disabled: True
-
     AnchorLayout:
         anchor_x: 'center'
         anchor_y: 'top'
-        size_hint: 1, 0.8
+        size_hint: 1, .8
 
         FloatLayout:
+
             PlayerInput:
                 id: name
                 hint_text: 'Sailor Name:'
                 font_size: 30
                 size_hint: None, None
-                size: root.width * 0.6, 60
+                size: root.width * .6, 60
                 center: root.width / 2, root.height * 0.9
 
             ShipGrid:                                           # The board is made up of buttons! Pygame would have been fun too!
@@ -67,6 +52,7 @@
                 center: root.width / 2.5, root.height / 2
 
         FloatLayout:
+
             ShipSelectionPane:                                  # Buttons for selecting a ship and its size
                 id: pane
                 rows: 7
@@ -110,11 +96,25 @@
                 RandomGridButton:                           # RANDOMIZE AND CLEAR FOR THE INDECISIVE
                     size_hint: None, None
                     size: 80, 60
-                    text: 'LAZY'
+                    text: 'IDK HELP'
 
                 ClearButton:
                     size_hint: None, None
                     size: 80, 60
                     text: 'WAIT NO'
 
+    BoxLayout:
+        orientation: 'horizontal'
+        Button:
+            text: 'Abort!'
+            size_hint: 0.4, None
+            size: 0, 60
+            on_press:
+                app.screen_manager.current = 'main'
 
+        StartButton:
+            id: start
+            text: 'Sail!'
+            size_hint: 0.4, None
+            size: 0, 60
+            disabled: True

@@ -1,10 +1,10 @@
-import pygame
 import kivy
 from kivy.app import App
 from kivy.config import Config
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager
+
 import app.screen
 
 Config.set('input', 'mouse', 'mouse')
@@ -26,4 +26,5 @@ class Battleship(App):
 
 
 if __name__ == "__main__":
-    Battleship().run()
+    app_instance = Battleship()
+    app_instance.run()

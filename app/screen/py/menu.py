@@ -23,7 +23,7 @@ class Buttons(Button):
 
 
 # =========================== FUNCTIONS ====================================================================
-def prepare_game(player1: type, player2: type, session_init, textinput, screen, *args):
+def prepare_game(player1: type, player2: type, session_init, text, screen, *args):
     """
     Function to setup a game of Battleship. Make players and check the screen.
     :param player1:
@@ -34,13 +34,13 @@ def prepare_game(player1: type, player2: type, session_init, textinput, screen, 
     :param args:
     :return:
     """
-    game, screen_manager = clear_old_game(session_init, textinput)
+    game, screen_manager = clear_old_game(session_init, text)
     game.make_player(player1, 'Player1')
     game.make_player(player2, 'Player2')
     screen_manager.current = screen
 
 
-def clear_old_game(callback, usernames):
+def clear_old_game(callback, names):
     """
     This function clears the previous game, unless you launch it for the first time.
     :param callback:
@@ -49,7 +49,7 @@ def clear_old_game(callback, usernames):
     """
     screen = App.get_running_app().screen_manager.get_screen('ship_selection')
     screen.start_button.callback = callback
-    screen.start_button.names = usernames
+    screen.start_button.names = names
     screen1 = App.get_running_app().screen_manager.get_screen('player1')
     screen2 = App.get_running_app().screen_manager.get_screen('player2')
 
@@ -72,14 +72,14 @@ class MenuButtonAnimation(Animation):
     This is assigned to a button in the Menu KIVY file.
     """
     def on_complete(self, widget):
-        if widget.player1 is True:
-            if widget.player2 is True:
-                prepare_game(widget.player1, widget.player2,
-                             widget.screens, widget.button_text, widget.screen)
+        if widget.player1 and widget.player2:
+            prepare_game(widget.player1, widget.player2,
+                         widget.screen_init, widget.button_text, widget.screen)
         else:
-            if widget.screens:
-                widget.screens()
-            App.get_running_app().screen_manager.current = widget.screen
+            if widget.screen_init:
+                widget.screen_init()
+            screen_manager = App.get_running_app().screen_manager
+            screen_manager.current = widget.screen
 
 
 class MainMenuButton(Buttons):
@@ -89,16 +89,16 @@ class MainMenuButton(Buttons):
     player1 = None
     player2 = None
     screen = None
-    screens = None
-    animation_running = None
+    screen_init = None
+    animation_start = None
 
     def __init__(self, **kwargs):
         super(MainMenuButton, self).__init__(**kwargs)
 
     def on_release(self):
-        if not self.animation_running:
-            self.animation_running = MenuButtonAnimation(opacity=0, duration=0.1)
-        self.animation_running.start(self)
+        if not self.animation_start:
+            self.animation_start = MenuButtonAnimation(opacity=0, duration=0.2)
+        self.animation_start.start(self)
 
 
 class MenuButton(MainMenuButton):
@@ -127,8 +127,8 @@ class MultiplayerButton(MainMenuButton):
 
 class PlayButton(MainMenuButton):
     """
-    Class for the START/ Play button
-    """
+     Class for the START/ Play button
+     """
     def __init__(self, **kwargs):
         super(PlayButton, self).__init__(**kwargs)
         self.player1 = Player
