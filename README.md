@@ -2,7 +2,7 @@
 
 ## Battleship Game w/ KIVY
 
-This is a Battleship game written in python using the [Kivy](https://kivy.org/#home) library.
+This is a Battleship game written in python using the [Kivy](https://kivy.org/#home) library. Run the GUI file.
 
 ## Rules of Battleship
 1. Start the game with a friend and provide your usernames. After entering both names, click 'Start' and you will be 

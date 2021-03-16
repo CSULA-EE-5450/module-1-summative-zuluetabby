@@ -1,0 +1,70 @@
+<ConnectionLabel@Label>:
+    font_size: 26
+    size_hint: None, None
+    size: root.width * .6, 30
+
+<MultiplayerScreen>:
+    name: 'multiplayer'                 # Assigning an ID, can call name on the left side in the code
+    error_message: error
+    address: ip
+    port: port
+
+    AsyncImage:
+        source: 'icons/background.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    AnchorLayout:
+        FloatLayout:
+            Label:
+                text: 'IP address'
+                font_size: 30
+                size_hint: None, None
+                size: root.width / 2, 30
+                center: root.width / 2, root.height - 200
+
+            TextInput:
+                id: ip
+                text: '127.0.0.0'
+                font_size: 30
+                size_hint: None, None
+                size: root.width / 2, 45
+                center: root.width / 2, root.height - 250
+
+            Label:
+                text: 'Server'
+                center: root.width / 2, root.height - 350
+                font_size: 30
+                size_hint: None, None
+                size: root.width / 2, 30
+
+            TextInput:
+                id: port
+                text: '7000'
+                font_size: 30
+                size_hint: None, None
+                size: root.width / 2, 45
+                center: root.width / 2, root.height - 400
+
+            Label:
+                id: error
+                text: ''
+                center: root.width / 2, root.height - 500
+                font_size: 26
+                color: 1, 0, 0, 0
+                size_hint: None, None
+                size: root.width / 2, 30
+
+        FloatLayout:
+            Button:
+                text: 'Back'
+                size_hint: 0.2, 0.1
+                pos_hint: {'x': 0.3, 'y': 0}
+                on_release:
+                    app.screen_manager.current = 'main'
+
+            ConnectButton:
+                text: 'Connect'
+                size_hint: 0.2, 0.1
+                pos_hint: {'x': 0.5, 'y': 0}

@@ -1,0 +1,16 @@
+<ConnectionScreen>:
+    name: 'connection'
+    AsyncImage:
+        source: 'icons/background.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    FloatLayout:
+        Label:
+            center: root.width, root.height
+            color: 0, 0, 0, 0
+            text:'Waiting'
+            font_size: 30
+            size_hint: None, None
+            size: root.width, root.height - 200

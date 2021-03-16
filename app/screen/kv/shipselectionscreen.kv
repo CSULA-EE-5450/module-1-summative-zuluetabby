@@ -1,0 +1,120 @@
+<ShipSizeButton>:
+    size_hint: None, None
+    size: 60, 60
+
+<RotatedImage>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: root.angle
+            axis: 0, 0, 1
+            origin: root.center
+    canvas.after:
+        PopMatrix
+
+<ShipSelectionScreen>:
+    name: 'ship_selection'
+    ship_grid: grid
+    top_pane: pane
+    start_button: start
+    player_input: name
+
+    AsyncImage:
+        source: 'icons/background.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Button:
+            text: 'Abort!'
+            size_hint: 0.4, None
+            size: 0, 60
+            on_press:
+                app.screen_manager.current = 'main'
+
+        StartButton:
+            id: start
+            text: 'Sail!'
+            size_hint: 0.4, None
+            size: 0, 60
+            disabled: True
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        size_hint: 1, 0.8
+
+        FloatLayout:
+            PlayerInput:
+                id: name
+                hint_text: 'Sailor Name:'
+                font_size: 30
+                size_hint: None, None
+                size: root.width * 0.6, 60
+                center: root.width / 2, root.height * 0.9
+
+            ShipGrid:                                           # The board is made up of buttons! Pygame would have been fun too!
+                id: grid
+                direction_button: direction
+                size_button: ship4
+                size: min(root.height * 0.7, root.width), min(root.height * 0.7, root.width)
+                size_hint: None, None
+                spacing: 2
+                rows: 10
+                cols: 10
+                center: root.width / 2.5, root.height / 2
+
+        FloatLayout:
+            ShipSelectionPane:                                  # Buttons for selecting a ship and its size
+                id: pane
+                rows: 7
+                cols: 1
+                pos: root.width * 0.7, 35
+                spacing: 2
+
+                ShipOrientationButton:
+                    id: direction
+                    image: orient
+                    background_normal: 'icons/button.jpg'
+                    size_hint: None, None
+                    size: 60, 60
+                    RotatedImage:
+                        id: orient
+                        source: 'icons/arrow.png'
+                        pos: self.parent.pos[0] + 5, self.parent.pos[1] + 5
+                        size: self.parent.size[0] - 10, self.parent.size[1] - 10
+
+                ShipSizeButton:
+                    id: ship4
+                    how_many: 1
+                    ship_size: 4
+                    text: 'Sub'
+
+                ShipSizeButton:
+                    how_many: 2
+                    ship_size: 3
+                    text: 'Carrier'
+
+                ShipSizeButton:
+                    how_many: 3
+                    ship_size: 2
+                    text: 'Fishboat'
+
+                ShipSizeButton:
+                    how_many: 4
+                    ship_size: 1
+                    text: 'Floatie'
+
+                RandomGridButton:                           # RANDOMIZE AND CLEAR FOR THE INDECISIVE
+                    size_hint: None, None
+                    size: 80, 60
+                    text: 'LAZY'
+
+                ClearButton:
+                    size_hint: None, None
+                    size: 80, 60
+                    text: 'WAIT NO'
+
+

@@ -1,0 +1,6 @@
+Anchor Layout: The AnchorLayout aligns its children to a border (top, bottom, left, right) or center.
+Float Layout:  FloatLayout honors the pos_hint and the size_hint properties of its children. No restrictions.
+Async Image:   If you want to display large images or retrieve them from URL’s, using AsyncImage will allow these
+                resources to be retrieved on a background thread without blocking your application.
+Box Layout:
+Rotate Image:

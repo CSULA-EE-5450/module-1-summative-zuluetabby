@@ -1,0 +1,55 @@
+<PlayerInput>:                                      # Get the user's name through a text input
+    background_color: 0, 0, 0, 0
+    canvas.before:
+        Color:
+            rgb: (1, 1, 1)
+        Rectangle:
+            size: self.size[0], 5                   # The line for giving a username
+            pos: self.pos[0], self.pos[1] + 15      # The height of the line for the username
+
+<Button>:
+    background_normal: 'icons/button.jpg'
+    background_down: self.background_normal
+    background_disabled_normal: 'icons/button_disabled.png'
+    opacity: 0.9
+    on_press:
+        self.background_active = self.background_normal
+        self.opacity = 1
+    on_release:
+        self.opacity = 0.9
+
+<MainMenuButton@Button>:
+    background_color: 0, 0, 0, 0
+    font_size: 32
+    color: 0, 0, 0, 1
+    on_press:
+        self.bold = True
+    on_release:
+        self.bold = False
+
+<MenuScreen>:
+    name: 'main'
+    Image:
+        source: 'icons/background.jpg'
+        allow_stretch: True
+        keep_ratio: False
+        keep_data: True
+
+    FloatLayout:
+        Image:
+            source: 'icons/logo.png'
+            size_hint_y: None
+            center_y: root.height - 100
+
+        BoxLayout:
+            orientation: 'vertical'                          # Lines up the buttons mentioned below vertically
+            size_hint: 1, None
+            size: 0, root.height - 250                       # The space between each button
+            pos_hint: {'center_x': 0.5, 'center_y': 0.45}    # Positions the buttons on the screen
+
+            PlayButton:
+                text: 'Play Battleship!'
+            MultiplayerButton:
+                text: 'Play Online!'
+            AbortButton:
+                text: 'Abort!'
